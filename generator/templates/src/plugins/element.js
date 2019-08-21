@@ -15,13 +15,18 @@ Vue.use(Element, { locale })
 Vue.use(Element)
 <%_ } _%>
 <%_ } else { _%>
-import { Button } from 'element-ui'
+import { 
+<%_ options.components.forEach(function(item){ _%>
+  <%= item %>,
+<%_ }) _%>
+} from 'element-ui'
 <%_ if (options.lang !== 'zh-CN') { _%>
 import lang from 'element-ui/lib/locale/lang/<%= options.lang %>'
 import locale from 'element-ui/lib/locale'
 
 locale.use(lang)
 <%_ } _%>
-
-Vue.use(Button)
+<%_ options.components.forEach(function(item){ _%>
+Vue.use(<%= item %>);
+<%_ }) _%>
 <%_ } _%>
